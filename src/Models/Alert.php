@@ -3,14 +3,13 @@
 namespace Nidavellir\Cube\Models;
 
 use Nidavellir\Abstracts\Classes\AbstractModel;
-use Nidavellir\Cube\Models\Api;
-use Nidavellir\Cube\Models\Order;
+
 
 class Alert extends AbstractModel
 {
     protected $casts = [
         'headers' => 'array',
-        'body' => 'array'
+        'body' => 'array',
     ];
 
     public function order()
