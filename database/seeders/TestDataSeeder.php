@@ -4,6 +4,7 @@ namespace Nidavellir\Database\Seeders;
 
 use Carbon\CarbonImmutable;
 use Illuminate\Database\Seeder;
+use Nidavellir\Cube\Models\Alert;
 use Nidavellir\Cube\Models\Api;
 use Nidavellir\Cube\Models\User;
 
@@ -75,9 +76,37 @@ class TestDataSeeder extends Seeder
                 $api->saveQuietly();
             });
 
-            //
-        });
+            /**
+             * Alerts generator. For each api, generate a random number of
+             * alerts during the duration of the api. If an api is enabled then
+             * it will generate alerts until now(). If the api is disabled on
+             * a certain moment of time, then alerts will be generated until
+             * the moment the api is disabled. This will simulate the fact that
+             * the user decided to disable an api so no more alerts can be
+             * triggered for that api. Actually alerts can be triggered but
+             * no order will be generated if the api is disabled.
+             *
+             * The alerts are not created via factories due to their
+             * integration complexity.
+             *
+             * For now we just consider that all apis are active.
+             */
 
-        // Create Apis to each of these users.
+            foreach (Api::all() as $api) {
+                // How many alerts will be generated?
+                $total = rand(1, 300);
+
+                for ($i = 0; $i < $total; $i++) {
+                }
+            }
+        });
+    }
+
+    protected function randomAction()
+    {
+    }
+
+    protected function randomTicker()
+    {
     }
 }
