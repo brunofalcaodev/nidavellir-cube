@@ -4,7 +4,6 @@ namespace Nidavellir\Database\Seeders;
 
 use Carbon\CarbonImmutable;
 use Illuminate\Database\Seeder;
-use Nidavellir\Cube\Models\Alert;
 use Nidavellir\Cube\Models\Api;
 use Nidavellir\Cube\Models\User;
 
@@ -67,7 +66,6 @@ class TestDataSeeder extends Seeder
 
             // Create N(5+) apis inside the first 5% lifespan.
             Api::factory(rand(1, 5))->make()->each(function ($api) use ($user, $lifespan) {
-
                 $api->user_id = $user->id;
                 $api->created_at = CarbonImmutable::createFromTimestamp(
                     $user->created_at->timestamp + rand(1, $lifespan * 0.05)
@@ -91,7 +89,6 @@ class TestDataSeeder extends Seeder
              *
              * For now we just consider that all apis are active.
              */
-
             foreach (Api::all() as $api) {
                 // How many alerts will be generated?
                 $total = rand(1, 300);

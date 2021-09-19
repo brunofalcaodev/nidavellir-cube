@@ -18,7 +18,7 @@ class CreateNidavellirSchema extends Migration
         Schema::create('positions', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('token_id');
+            $table->foreignId('ticker_id');
             $table->foreignId('quote_id');
             $table->foreignId('order_id');
 
@@ -27,11 +27,11 @@ class CreateNidavellirSchema extends Migration
 
             $table->decimal('buy_rate', 25, 10)
             ->nullable()
-            ->comment('The effective token order close price');
+            ->comment('The effective ticker order close price');
 
             $table->decimal('amount', 25, 10)
             ->nullable()
-            ->comment('The token amount bought');
+            ->comment('The ticker amount bought');
 
             $table->decimal('cost', 25, 10)
             ->nullable()
@@ -83,14 +83,14 @@ class CreateNidavellirSchema extends Migration
             $table->engine = 'MyISAM';
         });
 
-        Schema::create('tokens', function (Blueprint $table) {
+        Schema::create('tickers', function (Blueprint $table) {
             $table->id();
 
             $table->string('canonical')
-            ->comment('The token canonical symbol (e.g.: ADA)');
+            ->comment('The ticker canonical symbol (e.g.: ADA)');
 
             $table->string('name')
-            ->comment('The token technical symbol name (e.g.: Cardano)');
+            ->comment('The ticker technical symbol name (e.g.: Cardano)');
 
             $table->string('site_url')
             ->nullable()
@@ -118,8 +118,8 @@ class CreateNidavellirSchema extends Migration
             $table->foreignId('alert_id')
             ->comment('Relatable alert');
 
-            $table->foreignId('token_id')
-            ->comment('Relatable token');
+            $table->foreignId('ticker_id')
+            ->comment('Relatable ticker');
 
             $table->foreignId('quote_id')
             ->comment('Relatable quote');

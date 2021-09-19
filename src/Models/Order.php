@@ -11,7 +11,7 @@ class Order extends AbstractModel
         return $this->belongsTo(Api::class);
     }
 
-    public function token()
+    public function ticker()
     {
         return $this->belongsTo(Ticker::class);
     }

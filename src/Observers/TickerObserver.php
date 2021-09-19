@@ -9,21 +9,21 @@ class TickerObserver
     /**
      * Handle the Ticker "saving" event.
      *
-     * @param  \Nidavellir\Cube\Models\Ticker  $token
+     * @param  \Nidavellir\Cube\Models\Ticker  $ticker
      * @return void
      */
-    public function saving(Ticker $token)
+    public function saving(Ticker $ticker)
     {
-        $token->canonical = strtoupper($token->canonical);
+        $ticker->canonical = strtoupper($ticker->canonical);
     }
 
     /**
      * Handle the Ticker "created" event.
      *
-     * @param  \Nidavellir\Cube\Models\Ticker  $token
+     * @param  \Nidavellir\Cube\Models\Ticker  $ticker
      * @return void
      */
-    public function created(Ticker $token)
+    public function created(Ticker $ticker)
     {
         //
     }
@@ -31,10 +31,10 @@ class TickerObserver
     /**
      * Handle the Ticker "updated" event.
      *
-     * @param  \Nidavellir\Cube\Models\Ticker  $token
+     * @param  \Nidavellir\Cube\Models\Ticker  $ticker
      * @return void
      */
-    public function updated(Ticker $token)
+    public function updated(Ticker $ticker)
     {
         //
     }
@@ -42,10 +42,10 @@ class TickerObserver
     /**
      * Handle the Ticker "deleted" event.
      *
-     * @param  \Nidavellir\Cube\Models\Ticker  $token
+     * @param  \Nidavellir\Cube\Models\Ticker  $ticker
      * @return void
      */
-    public function deleted(Ticker $token)
+    public function deleted(Ticker $ticker)
     {
         //
     }
@@ -53,10 +53,10 @@ class TickerObserver
     /**
      * Handle the Ticker "restored" event.
      *
-     * @param  \Nidavellir\Cube\Models\Ticker  $token
+     * @param  \Nidavellir\Cube\Models\Ticker  $ticker
      * @return void
      */
-    public function restored(Ticker $token)
+    public function restored(Ticker $ticker)
     {
         //
     }
@@ -64,10 +64,10 @@ class TickerObserver
     /**
      * Handle the Ticker "force deleted" event.
      *
-     * @param  \Nidavellir\Cube\Models\Ticker  $token
+     * @param  \Nidavellir\Cube\Models\Ticker  $ticker
      * @return void
      */
-    public function forceDeleted(Ticker $token)
+    public function forceDeleted(Ticker $ticker)
     {
         //
     }
