@@ -23,22 +23,22 @@ class CreateNidavellirSchema extends Migration
             $table->foreignId('order_id');
 
             $table->string('buy_id')
-            ->comment('The exchange/api system buy id');
+                 ->comment('The exchange/api system buy id');
 
             $table->decimal('buy_rate', 25, 10)
-            ->nullable()
-            ->comment('The effective ticker order close price');
+                  ->nullable()
+                  ->comment('The effective ticker order close price');
 
             $table->decimal('amount', 25, 10)
-            ->nullable()
-            ->comment('The ticker amount bought');
+                  ->nullable()
+                  ->comment('The ticker amount bought');
 
             $table->decimal('cost', 25, 10)
-            ->nullable()
-            ->comment('The total quote amount invested, from the user wallet');
+                  ->nullable()
+                  ->comment('The total quote amount invested, from the user wallet');
 
             $table->timestamp('order_date')
-            ->comment('At what time did the order close, given from the exchange system');
+                  ->comment('At what time did the order close, given from the exchange system');
 
             $table->timestamps();
             $table->softDeletes();
@@ -50,32 +50,32 @@ class CreateNidavellirSchema extends Migration
             $table->id();
 
             $table->string('hashcode')
-            ->unique()
-            ->comment('The hashcode to be used in the alerts. Normally, a uniqid()');
+                  ->unique()
+                  ->comment('The hashcode to be used in the alerts. Normally, a uniqid()');
 
             $table->text('description')
-            ->nullable()
-            ->comment('A humanable description of what is this api used for');
+                  ->nullable()
+                  ->comment('A humanable description of what is this api used for');
 
             $table->foreignId('exchange_id')
-            ->constrained()
-            ->comment('The relatable Exchange that this api instance belongs to');
+                  ->constrained()
+                  ->comment('The relatable Exchange that this api instance belongs to');
 
             $table->foreignId('user_id')
-            ->constrained()
-            ->comment('The relatable User that his api instance belongs to');
+                  ->constrained()
+                  ->comment('The relatable User that his api instance belongs to');
 
             $table->string('api_key')
-            ->nullable()
-            ->comment('The API key returned from the exchange api creation');
+                  ->nullable()
+                  ->comment('The API key returned from the exchange api creation');
 
             $table->string('api_secret')
-            ->nullable()
-            ->comment('The API secret returned from the exchange api creation');
+                  ->nullable()
+                  ->comment('The API secret returned from the exchange api creation');
 
             $table->string('api_passphrase')
-            ->nullable()
-            ->comment('The API key returned from the exchange api creation');
+                  ->nullable()
+                  ->comment('The API key returned from the exchange api creation');
 
             $table->timestamps();
             $table->softDeletes();
@@ -86,19 +86,24 @@ class CreateNidavellirSchema extends Migration
         Schema::create('tickers', function (Blueprint $table) {
             $table->id();
 
+            $table->string('coingecko_id')
+                  ->unique()
+                  ->nullable()
+                  ->comment('The coingecko id');
+
             $table->string('canonical')
-            ->comment('The ticker canonical symbol (e.g.: ADA)');
+                  ->comment('The ticker canonical symbol (e.g.: ADA)');
 
             $table->string('name')
-            ->comment('The ticker technical symbol name (e.g.: Cardano)');
+                  ->comment('The ticker technical symbol name (e.g.: Cardano)');
 
-            $table->string('site_url')
-            ->nullable()
-            ->comment('The site url');
+            $table->text('site_url')
+                  ->nullable()
+                  ->comment('The site url');
 
-            $table->string('image_url')
-            ->nullable()
-            ->comment('Ticker image url');
+            $table->text('image_url')
+                  ->nullable()
+                  ->comment('Ticker image url');
 
             $table->timestamps();
             $table->softDeletes();
@@ -110,26 +115,26 @@ class CreateNidavellirSchema extends Migration
             $table->id();
 
             $table->string('system_id')
-            ->comment('The exchange order system id');
+                  ->comment('The exchange order system id');
 
             $table->foreignId('api_id')
-            ->comment('Relatable api');
+                  ->comment('Relatable api');
 
             $table->foreignId('alert_id')
             ->comment('Relatable alert');
 
             $table->foreignId('ticker_id')
-            ->comment('Relatable ticker');
+                  ->comment('Relatable ticker');
 
             $table->foreignId('quote_id')
-            ->comment('Relatable quote');
+                  ->comment('Relatable quote');
 
             $table->string('operation_type')
-            ->nullable()
-            ->comment('In case it exists, from the exchange');
+                  ->nullable()
+                  ->comment('In case it exists, from the exchange');
 
             $table->foreignId('order_type_id')
-            ->comment('Relatable order type');
+                  ->comment('Relatable order type');
 
             $table->timestamps();
             $table->softDeletes();
@@ -141,10 +146,10 @@ class CreateNidavellirSchema extends Migration
             $table->id();
 
             $table->string('name')
-            ->comment('Order type name');
+                  ->comment('Order type name');
 
             $table->string('canonical')
-            ->comment('Order type canonical');
+                  ->comment('Order type canonical');
 
             $table->timestamps();
             $table->softDeletes();
@@ -156,22 +161,22 @@ class CreateNidavellirSchema extends Migration
             $table->id();
 
             $table->text('headers')
-            ->nullable();
+                  ->nullable();
 
             $table->text('body')
-            ->nullable();
+                  ->nullable();
 
             $table->string('status')
-            ->default('received')
-            ->comment('The current status (received, validated, processed, error)');
+                  ->default('received')
+                  ->comment('The current status (received, validated, processed, error)');
 
             $table->foreignId('order_id')
-            ->nullable()
-            ->comment('The respective order instance, when created');
+                  ->nullable()
+                  ->comment('The respective order instance, when created');
 
             $table->text('error')
-            ->nullable()
-            ->comment('A possible error on the alert');
+                  ->nullable()
+                  ->comment('A possible error on the alert');
 
             $table->timestamps();
             $table->softDeletes();
@@ -183,10 +188,10 @@ class CreateNidavellirSchema extends Migration
             $table->id();
 
             $table->string('name')
-            ->comment('Quote name');
+                  ->comment('Quote name');
 
             $table->string('canonical')
-            ->comment('Quote canonical');
+                  ->comment('Quote canonical');
 
             $table->timestamps();
             $table->softDeletes();
@@ -198,27 +203,27 @@ class CreateNidavellirSchema extends Migration
             $table->id();
 
             $table->string('name')
-            ->unique()
-            ->comment('Exchange name');
+                  ->unique()
+                  ->comment('Exchange name');
 
             $table->string('canonical')
-            ->unique()
-            ->comment('Exchange canonical name used in queries');
+                  ->unique()
+                  ->comment('Exchange canonical name used in queries');
 
             $table->string('site_url')
-            ->unique()
-            ->nullable()
-            ->comment('Exchange site URL');
+                  ->unique()
+                  ->nullable()
+                  ->comment('Exchange site URL');
 
             $table->string('api_url')
-            ->unique()
-            ->nullable()
-            ->comment('Exchange API URL');
+                  ->unique()
+                  ->nullable()
+                  ->comment('Exchange API URL');
 
             $table->string('sandbox_api_url')
-            ->unique()
-            ->nullable()
-            ->comment('Exchange sandbox API URL');
+                  ->unique()
+                  ->nullable()
+                  ->comment('Exchange sandbox API URL');
 
             $table->timestamps();
             $table->softDeletes();
