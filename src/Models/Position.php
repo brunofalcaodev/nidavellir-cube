@@ -6,9 +6,9 @@ use Nidavellir\Abstracts\Classes\AbstractModel;
 
 class Position extends AbstractModel
 {
-    public function ticker()
+    public function token()
     {
-        return $this->belongsTo(Ticker::class);
+        return $this->belongsTo(Token::class);
     }
 
     public function quote()

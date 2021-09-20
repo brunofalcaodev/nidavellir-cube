@@ -18,7 +18,7 @@ class CreateNidavellirSchema extends Migration
         Schema::create('positions', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('ticker_id');
+            $table->foreignId('token_id');
             $table->foreignId('quote_id');
             $table->foreignId('order_id');
 
@@ -27,11 +27,11 @@ class CreateNidavellirSchema extends Migration
 
             $table->decimal('buy_rate', 25, 10)
                   ->nullable()
-                  ->comment('The effective ticker order close price');
+                  ->comment('The effective token order close price');
 
             $table->decimal('amount', 25, 10)
                   ->nullable()
-                  ->comment('The ticker amount bought');
+                  ->comment('The token amount bought');
 
             $table->decimal('cost', 25, 10)
                   ->nullable()
@@ -83,27 +83,18 @@ class CreateNidavellirSchema extends Migration
             $table->engine = 'MyISAM';
         });
 
-        Schema::create('tickers', function (Blueprint $table) {
+        Schema::create('tokens', function (Blueprint $table) {
             $table->id();
 
-            $table->string('coingecko_id')
-                  ->unique()
-                  ->nullable()
-                  ->comment('The coingecko id');
-
-            $table->string('canonical')
-                  ->comment('The ticker canonical symbol (e.g.: ADA)');
+            $table->string('symbol')
+                  ->comment('The token canonical symbol (e.g.: ADA)');
 
             $table->string('name')
-                  ->comment('The ticker technical symbol name (e.g.: Cardano)');
-
-            $table->text('site_url')
-                  ->nullable()
-                  ->comment('The site url');
+                  ->comment('The token technical symbol name (e.g.: Cardano)');
 
             $table->text('image_url')
                   ->nullable()
-                  ->comment('Ticker image url');
+                  ->comment('Token image url');
 
             $table->timestamps();
             $table->softDeletes();
@@ -123,8 +114,8 @@ class CreateNidavellirSchema extends Migration
             $table->foreignId('alert_id')
             ->comment('Relatable alert');
 
-            $table->foreignId('ticker_id')
-                  ->comment('Relatable ticker');
+            $table->foreignId('token_id')
+                  ->comment('Relatable token');
 
             $table->foreignId('quote_id')
                   ->comment('Relatable quote');

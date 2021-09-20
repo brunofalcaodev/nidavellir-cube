@@ -91,19 +91,16 @@ class TestDataSeeder extends Seeder
              */
             foreach (Api::all() as $api) {
                 // How many alerts will be generated?
-                $total = rand(1, 300);
+                $total = rand(50, 300);
+
+                // The alert lifespan goes between $pivot and now().
+                $start = $pivot->timestamp;
+                $end = now()->timestamp;
 
                 for ($i = 0; $i < $total; $i++) {
+                    $date = CarbonImmutable::createFromTimestamp(rand($start, $end));
                 }
             }
         });
-    }
-
-    protected function randomAction()
-    {
-    }
-
-    protected function randomTicker()
-    {
     }
 }
