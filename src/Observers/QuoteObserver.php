@@ -2,61 +2,61 @@
 
 namespace Nidavellir\Cube\Observers;
 
-use Nidavellir\Cube\Models\Quote;
+use Nidavellir\Cube\Models\Pair;
 
-class QuoteObserver
+class PairObserver
 {
     /**
-     * Handle the Quote "created" event.
+     * Handle the Pair "created" event.
      *
-     * @param  \Nidavellir\Cube\Models\Quote  $quote
+     * @param  \Nidavellir\Cube\Models\Pair  $pair
      * @return void
      */
-    public function created(Quote $quote)
+    public function created(Pair $pair)
     {
         //
     }
 
     /**
-     * Handle the Quote "updated" event.
+     * Handle the Pair "updated" event.
      *
-     * @param  \Nidavellir\Cube\Models\Quote  $quote
+     * @param  \Nidavellir\Cube\Models\Pair  $pair
      * @return void
      */
-    public function updated(Quote $quote)
+    public function updated(Pair $pair)
     {
         //
     }
 
     /**
-     * Handle the Quote "deleted" event.
+     * Handle the Pair "deleted" event.
      *
-     * @param  \Nidavellir\Cube\Models\Quote  $quote
+     * @param  \Nidavellir\Cube\Models\Pair  $pair
      * @return void
      */
-    public function deleted(Quote $quote)
+    public function deleted(Pair $pair)
     {
         //
     }
 
     /**
-     * Handle the Quote "restored" event.
+     * Handle the Pair "restored" event.
      *
-     * @param  \Nidavellir\Cube\Models\Quote  $quote
+     * @param  \Nidavellir\Cube\Models\Pair  $pair
      * @return void
      */
-    public function restored(Quote $quote)
+    public function restored(Pair $pair)
     {
         //
     }
 
     /**
-     * Handle the Quote "force deleted" event.
+     * Handle the Pair "force deleted" event.
      *
-     * @param  \Nidavellir\Cube\Models\Quote  $quote
+     * @param  \Nidavellir\Cube\Models\Pair  $pair
      * @return void
      */
-    public function forceDeleted(Quote $quote)
+    public function forceDeleted(Pair $pair)
     {
         //
     }

@@ -6,6 +6,11 @@ use Nidavellir\Abstracts\Classes\AbstractModel;
 
 class Token extends AbstractModel
 {
+    public function pairs()
+    {
+        return $this->hasMany(Pair::class);
+    }
+
     public function orders()
     {
         return $this->hasMany(Order::class);

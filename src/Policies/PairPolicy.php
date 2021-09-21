@@ -3,10 +3,10 @@
 namespace Nidavellir\Cube\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
-use Nidavellir\Cube\Models\Quote;
+use Nidavellir\Cube\Models\Pair;
 use Nidavellir\Cube\Models\User;
 
-class QuotePolicy
+class PairPolicy
 {
     use HandlesAuthorization;
 
@@ -25,10 +25,10 @@ class QuotePolicy
      * Determine whether the user can view the model.
      *
      * @param  \Nidavellir\Cube\Models\User  $user
-     * @param  \Nidavellir\Cube\Models\Quote  $model
+     * @param  \Nidavellir\Cube\Models\Pair  $model
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Quote $model)
+    public function view(User $user, Pair $model)
     {
         return true;
     }
@@ -48,10 +48,10 @@ class QuotePolicy
      * Determine whether the user can update the model.
      *
      * @param  \Nidavellir\Cube\Models\User  $user
-     * @param  \Nidavellir\Cube\Models\Quote  $model
+     * @param  \Nidavellir\Cube\Models\Pair  $model
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Quote $model)
+    public function update(User $user, Pair $model)
     {
         return true;
     }
@@ -60,10 +60,10 @@ class QuotePolicy
      * Determine whether the user can delete the model.
      *
      * @param  \Nidavellir\Cube\Models\User  $user
-     * @param  \Nidavellir\Cube\Models\Quote  $model
+     * @param  \Nidavellir\Cube\Models\Pair  $model
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Quote $model)
+    public function delete(User $user, Pair $model)
     {
         return true;
     }
@@ -72,10 +72,10 @@ class QuotePolicy
      * Determine whether the user can restore the model.
      *
      * @param  \Nidavellir\Cube\Models\User  $user
-     * @param  \Nidavellir\Cube\Models\Quote  $model
+     * @param  \Nidavellir\Cube\Models\Pair  $model
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Quote $model)
+    public function restore(User $user, Pair $model)
     {
         return true;
     }
@@ -84,10 +84,10 @@ class QuotePolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \Nidavellir\Cube\Models\User  $user
-     * @param  \Nidavellir\Cube\Models\Quote  $model
+     * @param  \Nidavellir\Cube\Models\Pair  $model
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Quote $model)
+    public function forceDelete(User $user, Pair $model)
     {
         return true;
     }

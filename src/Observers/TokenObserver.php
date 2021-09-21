@@ -14,7 +14,7 @@ class TokenObserver
      */
     public function saving(Token $token)
     {
-        $token->canonical = strtoupper($token->canonical);
+        $token->symbol = strtoupper($token->symbol);
     }
 
     /**
