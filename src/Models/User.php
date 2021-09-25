@@ -47,6 +47,11 @@ class User extends Authenticatable
         'is_subscribed' => 'boolean',
     ];
 
+    public function errors()
+    {
+        return $this->morphMany(Error::class, 'errorable');
+    }
+
     public function apis()
     {
         return $this->hasMany(Api::class);

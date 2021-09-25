@@ -3,7 +3,6 @@
 namespace Nidavellir\Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Nidavellir\Cube\Models\Api;
 use Nidavellir\Cube\Models\Exchange;
 use Nidavellir\Cube\Models\OrderType;
 use Nidavellir\Cube\Models\User;
@@ -34,18 +33,6 @@ class InitialDataSeeder extends Seeder
             'sandbox_api_url' => 'https://openapi-sandbox.kucoin.com',
         ]);
 
-        // Create API instance.
-        if (app()->environment() != 'production') {
-            $api = Api::create([
-                'description' => 'Kucoin api for development',
-                'exchange_id' => $exchange->id,
-                'user_id' => $user->id,
-                'api_key' => env('KUCOIN_API_KEY'),
-                'api_secret' => env('KUCOIN_API_SECRET'),
-                'api_passphrase' => env('KUCOIN_API_PASSPHRASE'),
-            ]);
-        }
-
         // Order types
         OrderType::create([
             'name' => 'Market',
@@ -55,11 +42,6 @@ class InitialDataSeeder extends Seeder
         OrderType::create([
             'name' => 'Limit',
             'canonical' => 'limit',
-        ]);
-
-        OrderType::create([
-            'name' => 'Stop Limit',
-            'canonical' => 'stop-limit',
         ]);
     }
 }

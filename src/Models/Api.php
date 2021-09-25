@@ -10,6 +10,11 @@ class Api extends AbstractModel
 {
     use HasFactory;
 
+    public function errors()
+    {
+        return $this->morphMany(Error::class, 'errorable');
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

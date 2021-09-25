@@ -6,6 +6,11 @@ use Nidavellir\Abstracts\Classes\AbstractModel;
 
 class Order extends AbstractModel
 {
+    public function errors()
+    {
+        return $this->morphMany(Error::class, 'errorable');
+    }
+
     public function api()
     {
         return $this->belongsTo(Api::class);

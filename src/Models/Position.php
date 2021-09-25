@@ -6,6 +6,11 @@ use Nidavellir\Abstracts\Classes\AbstractModel;
 
 class Position extends AbstractModel
 {
+    public function errors()
+    {
+        return $this->morphMany(Error::class, 'errorable');
+    }
+
     public function token()
     {
         return $this->belongsTo(Token::class);

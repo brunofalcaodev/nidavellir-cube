@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Nidavellir\Cube\Models\Alert;
 use Nidavellir\Cube\Models\Api;
+use Nidavellir\Cube\Models\Error;
 use Nidavellir\Cube\Models\Exchange;
 use Nidavellir\Cube\Models\Order;
 use Nidavellir\Cube\Models\OrderType;
@@ -16,6 +17,7 @@ use Nidavellir\Cube\Models\Token;
 use Nidavellir\Cube\Models\User;
 use Nidavellir\Cube\Observers\AlertObserver;
 use Nidavellir\Cube\Observers\ApiObserver;
+use Nidavellir\Cube\Observers\ErrorObserver;
 use Nidavellir\Cube\Observers\ExchangeObserver;
 use Nidavellir\Cube\Observers\OrderObserver;
 use Nidavellir\Cube\Observers\OrderTypeObserver;
@@ -25,6 +27,7 @@ use Nidavellir\Cube\Observers\TokenObserver;
 use Nidavellir\Cube\Observers\UserObserver;
 use Nidavellir\Cube\Policies\AlertPolicy;
 use Nidavellir\Cube\Policies\ApiPolicy;
+use Nidavellir\Cube\Policies\ErrorPolicy;
 use Nidavellir\Cube\Policies\ExchangePolicy;
 use Nidavellir\Cube\Policies\OrderPolicy;
 use Nidavellir\Cube\Policies\OrderTypePolicy;
@@ -66,6 +69,7 @@ class NidavellirCubeServiceProvider extends ServiceProvider
         OrderType::observe(OrderTypeObserver::class);
         Alert::observe(AlertObserver::class);
         Order::observe(OrderObserver::class);
+        Error::observe(ErrorObserver::class);
     }
 
     protected function registerPolicies(): void
@@ -79,6 +83,7 @@ class NidavellirCubeServiceProvider extends ServiceProvider
         Gate::policy(OrderType::class, OrderTypePolicy::class);
         Gate::policy(Alert::class, AlertPolicy::class);
         Gate::policy(Order::class, OrderPolicy::class);
+        Gate::policy(Error::class, ErrorPolicy::class);
     }
 
     protected function publishResources()

@@ -6,20 +6,14 @@ use Nidavellir\Abstracts\Classes\AbstractModel;
 
 class Alert extends AbstractModel
 {
-    public function setHeadersAttribute($value)
-    {
-        $this->attributes['headers'] =
-            is_array($value) ?
-            array_to_string($value) :
-            $value;
-    }
+    protected $casts = [
+        'headers' => 'array',
+        'body' => 'array',
+    ];
 
-    public function setBodyAttribute($value)
+    public function errors()
     {
-        $this->attributes['body'] =
-            is_array($value) ?
-            array_to_string($value) :
-            $value;
+        return $this->morphMany(Error::class, 'errorable');
     }
 
     public function order()

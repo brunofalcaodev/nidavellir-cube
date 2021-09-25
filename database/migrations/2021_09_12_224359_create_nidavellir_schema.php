@@ -10,6 +10,32 @@ class CreateNidavellirSchema extends Migration
 {
     public function up()
     {
+        Schema::create('errors', function (Blueprint $table) {
+            $table->id();
+
+            $table->text('message')
+                  ->comment('The error message itself');
+
+            $table->longText('trace')
+                  ->nullable()
+                  ->comment('Error trace log');
+
+            $table->longText('code')
+                  ->nullable()
+                  ->comment('Code zone where it happened');
+
+            $table->longText('payload')
+                  ->nullable()
+                  ->comment('Extra data payload when necessary');
+
+            $table->nullableMorphs('errorable');
+
+            $table->timestamps();
+            $table->softDeletes();
+
+            $table->engine = 'InnoDB';
+        });
+
         Schema::create('positions', function (Blueprint $table) {
             $table->id();
 

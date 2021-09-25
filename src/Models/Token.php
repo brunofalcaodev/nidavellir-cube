@@ -6,6 +6,11 @@ use Nidavellir\Abstracts\Classes\AbstractModel;
 
 class Token extends AbstractModel
 {
+    public function errors()
+    {
+        return $this->morphMany(Error::class, 'errorable');
+    }
+
     public function pairs()
     {
         return $this->hasMany(Pair::class);
