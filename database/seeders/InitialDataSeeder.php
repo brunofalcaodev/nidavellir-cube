@@ -3,9 +3,12 @@
 namespace Nidavellir\Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Bus;
 use Nidavellir\Cube\Models\Exchange;
 use Nidavellir\Cube\Models\OrderType;
 use Nidavellir\Cube\Models\User;
+use Nidavellir\Jobs\Coingecko\UpsertTokensJob as UpsertTokensJobCoingecko;
+use Nidavellir\Jobs\Kucoin\UpsertTokensJob as UpsertTokensJobKucoin;
 
 class InitialDataSeeder extends Seeder
 {
@@ -43,5 +46,10 @@ class InitialDataSeeder extends Seeder
             'name' => 'Limit',
             'canonical' => 'limit',
         ]);
+
+        Bus::chain([
+            new UpsertTokensJobKucoin,
+            new UpsertTokensJobCoingecko
+        ])->dispatch();
     }
 }

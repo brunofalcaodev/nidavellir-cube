@@ -13,6 +13,7 @@ use Nidavellir\Cube\Models\Order;
 use Nidavellir\Cube\Models\OrderType;
 use Nidavellir\Cube\Models\Pair;
 use Nidavellir\Cube\Models\Position;
+use Nidavellir\Cube\Models\SystemLog;
 use Nidavellir\Cube\Models\Token;
 use Nidavellir\Cube\Models\User;
 use Nidavellir\Cube\Observers\AlertObserver;
@@ -23,6 +24,7 @@ use Nidavellir\Cube\Observers\OrderObserver;
 use Nidavellir\Cube\Observers\OrderTypeObserver;
 use Nidavellir\Cube\Observers\PairObserver;
 use Nidavellir\Cube\Observers\PositionObserver;
+use Nidavellir\Cube\Observers\SystemLogObserver;
 use Nidavellir\Cube\Observers\TokenObserver;
 use Nidavellir\Cube\Observers\UserObserver;
 use Nidavellir\Cube\Policies\AlertPolicy;
@@ -33,6 +35,7 @@ use Nidavellir\Cube\Policies\OrderPolicy;
 use Nidavellir\Cube\Policies\OrderTypePolicy;
 use Nidavellir\Cube\Policies\PairPolicy;
 use Nidavellir\Cube\Policies\PositionPolicy;
+use Nidavellir\Cube\Policies\SystemLogPolicy;
 use Nidavellir\Cube\Policies\TokenPolicy;
 use Nidavellir\Cube\Policies\UserPolicy;
 
@@ -70,6 +73,7 @@ class NidavellirCubeServiceProvider extends ServiceProvider
         Alert::observe(AlertObserver::class);
         Order::observe(OrderObserver::class);
         Error::observe(ErrorObserver::class);
+        SystemLog::observe(SystemLogObserver::class);
     }
 
     protected function registerPolicies(): void
@@ -84,6 +88,7 @@ class NidavellirCubeServiceProvider extends ServiceProvider
         Gate::policy(Alert::class, AlertPolicy::class);
         Gate::policy(Order::class, OrderPolicy::class);
         Gate::policy(Error::class, ErrorPolicy::class);
+        Gate::policy(SystemLog::class, SystemLogPolicy::class);
     }
 
     protected function publishResources()

@@ -10,6 +10,37 @@ class CreateNidavellirSchema extends Migration
 {
     public function up()
     {
+        Schema::create('system_logs', function (Blueprint $table) {
+            $table->id();
+
+            $table->string('aggregatable_hashcode')
+                  ->nullable()
+                  ->comment('The aggregatable hashcode meaning all operations are made inside this aggregatable code');
+
+            $table->string('aggregatable_step')
+                  ->nullable()
+                  ->comment('The aggregatable step sequence');
+
+            $table->string('name_primary')
+                  ->comment('Primary category name');
+
+            $table->string('dataset_primary')
+                  ->comment('Primary dataset');
+
+            $table->string('name_secondary')
+                  ->nullable()
+                  ->comment('Secondary category name');
+
+            $table->string('dataset_secondary')
+                  ->nullable()
+                  ->comment('Secondary dataset');
+
+            $table->timestamps();
+            $table->softDeletes();
+
+            $table->engine = 'InnoDB';
+        });
+
         Schema::create('errors', function (Blueprint $table) {
             $table->id();
 
