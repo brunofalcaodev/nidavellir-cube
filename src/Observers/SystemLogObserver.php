@@ -14,10 +14,10 @@ class SystemLogObserver
      */
     public function saving(SystemLog $systemLog)
     {
-        if (!is_blank(session('nidavellir_cube_systemlog_tag'))) {
+        if (! is_blank(session('nidavellir_cube_systemlog_tag'))) {
             $aggregate = session('nidavellir_cube_systemlog_tag');
             $systemLog->aggregatable_hashcode = $aggregate;
-            $systemLog->aggregatable_step = SystemLog::where('aggregatable_hashcode', $aggregate)->get()->count()+1;
+            $systemLog->aggregatable_step = SystemLog::where('aggregatable_hashcode', $aggregate)->get()->count() + 1;
         }
     }
 

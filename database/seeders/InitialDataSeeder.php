@@ -49,7 +49,7 @@ class InitialDataSeeder extends Seeder
 
         Bus::chain([
             new UpsertTokensJobKucoin,
-            new UpsertTokensJobCoingecko
+            new UpsertTokensJobCoingecko,
         ])->dispatch();
     }
 }

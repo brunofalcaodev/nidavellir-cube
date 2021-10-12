@@ -10,6 +10,27 @@ class CreateNidavellirSchema extends Migration
 {
     public function up()
     {
+        Schema::create('klines_japanese', function (Blueprint $table) {
+            $table->id();
+
+            $table->decimal('high', 36, 18)
+                  ->comment('Candlestick high value');
+
+            $table->decimal('open', 36, 18)
+                  ->comment('Candlestick open value');
+
+            $table->decimal('close', 36, 18)
+                  ->comment('Candlestick close value');
+
+            $table->decimal('low', 36, 18)
+                  ->comment('Candlestick low value');
+
+            $table->timestamps();
+            $table->softDeletes();
+
+            $table->engine = 'InnoDB';
+        });
+
         Schema::create('system_logs', function (Blueprint $table) {
             $table->id();
 
